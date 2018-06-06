@@ -100,8 +100,12 @@ const askEliza = line => {
 
 }
 
+const init_question = "Do you like bananas?";
+
 app.get('/bam', (req,res)=>{
-	bot.ask("Do you like bananas?", (err,response) => {
+    myEmitter.emit('event', "Eliza: " + init_question);
+
+	bot.ask(init_question, (err,response) => {
 		console.log("Cleverbot: " + response);
 		myEmitter.emit('event', "Cleverbot: " + response);
 		askEliza(response);
